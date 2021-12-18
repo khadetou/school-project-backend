@@ -27,4 +27,12 @@ export class ProductsService {
   createProduct(createProductDto: CreateProductDto): Promise<Product> {
     return this.productRepository.createProduct(createProductDto);
   }
+
+  async deleteProduct(id: string): Promise<void> {
+    const result = await this.productRepository.delete(id);
+
+    if (result.affected === 0) {
+      throw new NotFoundException(`Product with ID "${id}" not found`);
+    }
+  }
 }
