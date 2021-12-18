@@ -1,5 +1,5 @@
 import { ProductRepository } from './product.repository';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { Product } from './product.entity';
@@ -14,6 +14,14 @@ export class ProductsService {
 
   getProducts(fileterDto: GetProductFilterDto): Promise<Product[]> {
     return this.productRepository.getProducts(fileterDto);
+  }
+
+  async getProductById(id: string): Promise<Product> {
+    const product = await this.productRepository.findOne(id);
+    if (!product) {
+      throw new NotFoundException(`Product with ID "${id}" not found`);
+    }
+    return product;
   }
 
   createProduct(createProductDto: CreateProductDto): Promise<Product> {
