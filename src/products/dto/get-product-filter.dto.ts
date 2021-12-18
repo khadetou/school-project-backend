@@ -1,4 +1,5 @@
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
+import { ProductStatus } from '../product-status.enum';
 
 export class GetProductFilterDto {
   @IsOptional()
@@ -31,4 +32,8 @@ export class GetProductFilterDto {
   @IsOptional()
   @IsNumber()
   price?: number;
+
+  @IsOptional()
+  @IsEnum(ProductStatus)
+  status?: ProductStatus;
 }

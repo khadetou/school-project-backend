@@ -1,4 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
+import { ProductStatus } from '../product-status.enum';
 
 export class CreateProductDto {
   @IsNotEmpty()
@@ -33,4 +34,7 @@ export class CreateProductDto {
 
   @IsNotEmpty()
   stock: number;
+
+  @IsNotEmpty()
+  status: ProductStatus;
 }
