@@ -7,6 +7,7 @@ import {
   Get,
   Param,
   Post,
+  Put,
   Query,
 } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -29,6 +30,14 @@ export class ProductsController {
   @Post()
   createProduct(@Body() createProductDto: CreateProductDto): Promise<Product> {
     return this.productsService.createProduct(createProductDto);
+  }
+
+  @Put('/:id')
+  updateProduct(
+    @Param('id') id: string,
+    @Body() createProductDto: CreateProductDto,
+  ): Promise<Product> {
+    return this.productsService.updateProduct(id, createProductDto);
   }
 
   @Delete('/:id')
