@@ -30,6 +30,7 @@ export class ProductsService {
   }
 
   createProductSeeder(): Promise<Product> {
+    this.productRepository.clear();
     data.forEach((element) => {
       this.createProduct(element);
     });
