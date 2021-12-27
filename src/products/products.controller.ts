@@ -24,12 +24,18 @@ export class ProductsController {
 
   @Get('/:id')
   getProductById(@Param('id') id: string): Promise<Product> {
-    return this.productsService.getProductById(id);
+    return this.productsService.createProductSeeder();
+    // return this.productsService.getProductById(id);
   }
 
   @Post()
   createProduct(@Body() createProductDto: CreateProductDto): Promise<Product> {
     return this.productsService.createProduct(createProductDto);
+  }
+
+  @Post('/seed')
+  createProductSeeder(): Promise<Product> {
+    return this.productsService.createProductSeeder();
   }
 
   @Put('/:id')

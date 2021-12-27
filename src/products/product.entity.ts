@@ -24,7 +24,9 @@ export class Product {
   @Column()
   location: string;
 
-  @Column()
+  @Column({
+    length: 10000,
+  })
   description: string;
 
   @Column()
