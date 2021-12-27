@@ -13,7 +13,7 @@ export class ProductRepository extends Repository<Product> {
     if (search) {
       query.andWhere(
         '(LOWER(product.name) LIKE LOWER(:search) OR LOWER(product.brand) LIKE LOWER(:search) OR LOWER(product.store) LIKE  LOWER(:search) OR LOWER(product.category) LIKE LOWER(:search) OR LOWER(product.location) LIKE LOWER(:search) OR LOWER(product.description) LIKE LOWER(:search))',
-        { search: `%${search}%` },
+        { search: `%${search}% ` },
       );
     }
 
@@ -36,7 +36,7 @@ export class ProductRepository extends Repository<Product> {
     if (order) {
       query.orderBy(order);
     }
-
+    query.orderBy('product.price', 'ASC');
     const products = await query.getMany();
     return products;
   }
