@@ -34,6 +34,5 @@ export class GetProductFilterDto {
   price?: number;
 
   @IsOptional()
-  @IsEnum(ProductStatus)
   status?: ProductStatus;
 }
