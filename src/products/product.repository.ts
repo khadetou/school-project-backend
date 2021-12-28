@@ -10,12 +10,22 @@ export class ProductRepository extends Repository<Product> {
     const { search, category, store, location, status, order } = fileterDto;
     const query = this.createQueryBuilder('product');
 
+    //Search
     if (search) {
       query.andWhere(
-        '(LOWER(product.name) LIKE LOWER(:search) OR LOWER(product.brand) LIKE LOWER(:search) OR LOWER(product.store) LIKE  LOWER(:search) OR LOWER(product.category) LIKE LOWER(:search) OR LOWER(product.location) LIKE LOWER(:search) OR LOWER(product.description) LIKE LOWER(:search))',
-        { search: `%${search}% ` },
+        '(LOWER(product.name ) LIKE LOWER(:search) OR LOWER(product.description) LIKE LOWER(:search))',
+        {
+          search: `%${search}%`,
+        },
       );
     }
+
+    // if (search) {
+    //   query.andWhere(
+    //     '(LOWER(product.name) LIKE LOWER(:search) OR LOWER(product.brand) LIKE LOWER(:search) OR LOWER(product.store) LIKE  LOWER(:search) OR LOWER(product.category) LIKE LOWER(:search) OR LOWER(product.location) LIKE LOWER(:search) OR LOWER(product.description) LIKE LOWER(:search))',
+    //     { search: `%${search}% ` },
+    //   );
+    // }
 
     if (category) {
       query.andWhere('product.category = :category', { category });
@@ -48,6 +58,7 @@ export class ProductRepository extends Repository<Product> {
       image,
       brand,
       category,
+      categoryImage,
       store,
       location,
       description,
@@ -62,6 +73,7 @@ export class ProductRepository extends Repository<Product> {
       image,
       brand,
       category,
+      categoryImage,
       store,
       location,
       description,

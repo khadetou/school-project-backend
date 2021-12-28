@@ -24,8 +24,7 @@ export class ProductsController {
 
   @Get('/:id')
   getProductById(@Param('id') id: string): Promise<Product> {
-    return this.productsService.createProductSeeder();
-    // return this.productsService.getProductById(id);
+    return this.productsService.getProductById(id);
   }
 
   @Post()

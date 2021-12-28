@@ -13,6 +13,9 @@ export class Product {
   image: string;
 
   @Column()
+  categoryImage: string;
+
+  @Column()
   brand: string;
 
   @Column()

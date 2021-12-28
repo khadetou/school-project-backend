@@ -9,6 +9,9 @@ export class CreateProductDto {
   image: string;
 
   @IsNotEmpty()
+  categoryImage: string;
+
+  @IsNotEmpty()
   brand: string;
 
   @IsNotEmpty()
