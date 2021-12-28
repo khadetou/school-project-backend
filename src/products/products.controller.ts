@@ -32,7 +32,7 @@ export class ProductsController {
     return this.productsService.createProduct(createProductDto);
   }
 
-  @Post('/seed')
+  @Post('/seeder')
   createProductSeeder(): Promise<Product> {
     return this.productsService.createProductSeeder();
   }
